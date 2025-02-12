@@ -1,39 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
 import { PostCard } from '../components/PostCard';
 import { PostCardSkeleton } from '../components/PostCardSkeleton';
-import { MagnifyingGlass } from 'phosphor-react';
-import { Link } from 'react-router-dom';
+import { useGetPosts } from '../hooks/useGetPosts';
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
 
 export function Posts() {
-  const { data: posts, isLoading, isError } = useQuery<Post[]>({
-    queryKey: ['posts'],
-    queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-      if (!response.ok) {
-        throw new Error('Error loading posts');
-      }
-      return response.json();
-    },
-  });
+  const { data: posts, isLoading, isError } = useGetPosts();
 
   if (isLoading) {
     return (
-      <div className="p-8 bg-zinc-900 text-zinc-100 h-screen overflow-y-auto">
+      <div className="p-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-100 h-screen overflow-y-auto">
         <div className='flex justify-center items-center mb-6 gap-3'>
           <h1 className="text-5xl font-bold text-center">Posts</h1>
-          <Link
-            to='/search'
-            className=' bg-zinc-200 hover:bg-zinc-400 rounded-md flex justify-center items-center'
-          >
-            <MagnifyingGlass className='size-10 font-extrabold text-zinc-950' />
-          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, index) => (
@@ -53,15 +30,9 @@ export function Posts() {
   }
 
   return (
-    <div className="p-8 dark:bg-zinc-900 text-zinc-100 h-screen overflow-y-auto">
+    <div className="p-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-100 h-screen overflow-y-auto">
       <div className='flex justify-center items-center mb-6 gap-3'>
         <h1 className="text-5xl font-bold text-center">Posts</h1>
-        <Link
-          to='/search'
-          className=' bg-zinc-800 hover:bg-zinc-700 rounded-md'
-        >
-          <MagnifyingGlass className='size-10 font-extrabold text-zinc-100' />
-        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts?.map((post) => (
