@@ -16,16 +16,6 @@ Detalhes do Post: Exibe os detalhes de um post específico ao clicar nele.
 Dark Mode e Light Mode: Alterna entre temas escuro e claro.
 
 <br/>
-
-## 🚀 Link do deploy do projeto (clique para entrar)
-
-<a href="https://support-app-neon.vercel.app" target="_blank" rel="external">
-<img src="public/project-image.png" height="350" width="750" alt="Imagem do Projeto">
-</a>
-
-<h2>Link: <a href="https://support-app-neon.vercel.app" target="_blank" rel="external">Projeto</a></h2>
-
-<br/>
 <br/>
 
 ## 💻 Pré-requisitos
